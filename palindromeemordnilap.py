@@ -1,5 +1,5 @@
 import os
-from flask import Flask
+from flask import Flask, redirect
 
 HOST = os.environ.get('HOST', '0.0.0.0')
 PORT = int(os.environ.get('PORT', 5000))
@@ -9,6 +9,10 @@ app = Flask(__name__)
 
 def filter_word(word):
     return word.replace('+', ' ')
+
+@app.route('/')
+def index():
+    return redirect('/example')
 
 @app.route('/<word>')
 def hello_world(word):
